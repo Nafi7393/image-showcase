@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Image Showcase</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <h2>Folders</h2>
+    <input id="folder-search" class="search folder-search" placeholder="Search folders…" autocomplete="off" />
+    <ul id="folder-list" class="folder-list"></ul>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+      <i class="fas fa-moon"></i>
+    </button>
+  </aside>
+
+  <main class="main-content">
+    <header>
+      <h1 id="current-folder">Image Showcase</h1>
+      <input id="image-search" class="search image-search" placeholder="Search images…" autocomplete="off" />
+    </header>
+    <div id="gallery" class="gallery"></div>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite">Copied!</div>
+</body>
+</html>
