@@ -9,14 +9,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const imageSearch  = document.getElementById('image-search');
   const headerTitle  = document.getElementById('current-folder');
   const toast        = document.getElementById('toast');
-  const themeToggle  = document.getElementById('theme-toggle');
-  let darkMode = false;
-
-  // 3) theme toggle
-  themeToggle.onclick = () => {
-    darkMode = !darkMode;
-    document.body.toggleAttribute('data-theme', darkMode);
-  };
 
   // 4) render folder list
   function renderFolders(list) {

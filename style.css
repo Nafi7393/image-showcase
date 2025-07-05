@@ -36,7 +36,9 @@ body {
   width: 100%;
 }
 .folder-list {
-  flex: 1; overflow-y: auto; list-style: none;
+  flex: 1;
+  overflow-y: auto;
+  list-style: none;
 }
 .folder-list li {
   padding: 0.5rem 0.75rem; border-radius: var(--radius);
@@ -98,7 +100,7 @@ header h1 {
 .toast {
   position: fixed; bottom: 2rem; left: 50%;
   transform: translateX(-50%);
-  background: var(--text); color: #fff;
+  background: var(--text); color: #464646;
   padding: 0.6rem 1rem; border-radius: var(--radius);
   opacity: 0; transition: opacity .3s;
 }
