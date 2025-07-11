@@ -20,6 +20,13 @@ def convert_to_resized_jpg(file_path, counter):
                 img = img.convert('RGB')
 
             width, height = img.size
+
+            # Skip if already JPG and height is 1200px
+            if file_path.lower().endswith('.jpg') and height == 1200:
+                print(f"[{counter}] Skipped (already valid): {file_path}")
+                return
+
+            # Resize image to 1200px height
             aspect_ratio = width / height
             target_height = 1200
             target_width = int(aspect_ratio * target_height)
@@ -29,6 +36,7 @@ def convert_to_resized_jpg(file_path, counter):
             folder_name = os.path.basename(dir_name)
             name, ext = os.path.splitext(file_name)
 
+            # Only append folder name if not already present
             if folder_name.lower() in name.lower():
                 new_file_name = f"{name}.jpg"
             else:
@@ -55,7 +63,6 @@ def convert_to_resized_jpg(file_path, counter):
         except:
             pass
         gc.collect()
-
 
 
 def process_directory(root_dir):
