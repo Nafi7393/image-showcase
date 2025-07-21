@@ -1,38 +1,35 @@
-import os
 import json
-from urllib.parse import quote
+from pathlib import Path
+from natsort import natsorted
 
-# Constants
 ROOT_FOLDER = "Sample List"
 OUTPUT_FILE = "manifest.json"
 
 def build_manifest(root_path):
     manifest = {"folders": [], "images": {}}
-
-    # Ensure root exists
-    if not os.path.isdir(root_path):
+    root = Path(root_path)
+    if not root.is_dir():
         raise FileNotFoundError(f"Directory not found: {root_path}")
 
-    # Traverse style folders
-    for style_folder in sorted(os.listdir(root_path)):
-        style_path = os.path.join(root_path, style_folder)
-        if os.path.isdir(style_path):
-            manifest["folders"].append(style_folder)
-            image_list = []
+    # 1) natural‑sort your style folders
+    for style_folder in natsorted([p for p in root.iterdir() if p.is_dir()]):
+        manifest["folders"].append(style_folder.name)
+        image_list = []
 
-            for filename in sorted(os.listdir(style_path)):
-                full_path = os.path.join(style_path, filename)
-                if os.path.isfile(full_path) and filename.lower().endswith((".jpg", ".jpeg", ".png", ".webp")):
-                    # Reconstruct relative path with URL encoding
-                    relative_path = os.path.join(root_path, style_folder, filename)
-                    encoded_path = quote(relative_path, safe="/:")
-                    image_list.append(encoded_path)
+        # 2) natural‑sort the image files in each style folder
+        files = [p for p in style_folder.iterdir()
+                 if p.is_file() and p.suffix.lower() in (".jpg", ".jpeg", ".png", ".webp")]
+        for img in natsorted(files):
+            # make the path relative to root, then prepend ROOT_FOLDER
+            rel = img.relative_to(root)
+            # result: "Sample List/Abstract Style/1 - Abstract Style.jpg"
+            full_path = f"{root.name}/{rel.as_posix()}"
+            image_list.append(full_path)
 
-            manifest["images"][style_folder] = image_list
+        manifest["images"][style_folder.name] = image_list
 
     return manifest
 
-# Generate and save manifest
 if __name__ == "__main__":
     data = build_manifest(ROOT_FOLDER)
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
