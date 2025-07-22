@@ -9,8 +9,16 @@
       "description": "Take the two dogs from the photographic images, then transform the subjects into art in the style of the last art image. Make sure that the subject's original color stays intact in the artwork.\n\nNOTE:: THE COLOR AND EVERY FEATURE OF THE SUBJECT MUST STAY EXACTLY THE SAME. IT'S SUPER IMPORTANT. Ensure that the subject's eyes, ears, nose, facial markings, skin features, and coloring stay exactly the same in the artwork. It's important for better artwork. (IT'S NOT A PNG IMAGE, SO APPLY ALL COLOR ALL OVER THE CANVAS)\n\n-- Make sure that every feature and color of every subject is perfectly copied in the artwork. Also, try to mimic the artwork style as best as you can.\n-- Must make sure that all the subjects are included in the artwork.\n-- It's an abstract-style artwork, so make it more like it.\n-- Give me options with the new best color combos."
     },
     {
+      "title": "1 Pet & 1 Human - Abstract Art",
+      "description": "Take the two subjects from the photographic images (A Dog and Human), then transform the subjects into art in the style of the last art image. Make sure that the subject's original color stays intact in the artwork.\n\nNOTE:: THE COLOR AND EVERY FEATURE OF THE SUBJECT MUST STAY EXACTLY THE SAME. IT'S SUPER IMPORTANT. Ensure that the subject's eyes, ears, nose, facial markings, skin features, and coloring stay exactly the same in the artwork. It's important for better artwork. (IT'S NOT A PNG IMAGE, SO APPLY ALL COLOR ALL OVER THE CANVAS)\n\n-- Make sure that every feature and color of every subject is perfectly copied in the artwork. Also, try to mimic the artwork style as best as you can.\n-- Must make sure that all the subjects are included in the artwork.\n-- It's an abstract-style artwork, so make it more like it.\n-- Give me options with the new best color combos."
+    },
+    {
       "title": "Modern Art Tigger Text",
       "description": "-- It's a Modern-style artwork, so make it more like it. (By modern style, I mean realistic painting art)"
+    },
+    {
+      "title": "All Subject's Including Text",
+      "description": "MUST NOTE::::  All the subjects must be included in the artwork; each and every subject must maintain its original color and features; the size of the subjects must be exactly the same as in the original image."
     },
     {
       "title": "Be More White",
