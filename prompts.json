@@ -17,12 +17,20 @@
       "description": "-- It's a Modern-style artwork, so make it more like it. (By modern style, I mean realistic painting art)"
     },
     {
+      "title": "Black & White Art Tigger",
+      "description": "-- It's a Black and White style artwork, so make it more like it - monochomic style"
+    },
+    {
       "title": "All Subject's Including Text",
       "description": "MUST NOTE::::  All the subjects must be included in the artwork; each and every subject must maintain its original color and features; the size of the subjects must be exactly the same as in the original image."
     },
     {
       "title": "Be More White",
       "description": "MUST NOTE::::  Be more abstract, use more white bright colors. also uses other colors"
+    },
+    {
+      "title": "Accurate Color & Style",
+      "description": "MUST NOTE:::: COPY THE COLOR AND STYLE OF THE PROVIDED REFERNCE ARTWORK TO THE BEST ACCURACY "
     }
   ]
 }
