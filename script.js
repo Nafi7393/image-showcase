@@ -230,6 +230,11 @@ function initColorCombination() {
       const cnt = btn.dataset.count === "random" ? "random" : Number(btn.dataset.count);
       const combo = getRandomColors(cnt);
       const text = formatCombination(combo);
+
+      // show it on screen
+      const disp = document.getElementById("color-display");
+      if (disp) disp.textContent = text;
+
       try {
         await navigator.clipboard.writeText(text);
         toast.classList.add("show");
