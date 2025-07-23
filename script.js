@@ -215,10 +215,10 @@ function getRandomColors(count) {
 
 function formatCombination(list) {
   if (list.length === 2) {
-    return `${list[0]} and ${list[1]}`;
+    return `(${list[0]} and ${list[1]})`;
   }
   const last = list.pop();
-  return `${list.join(", ")}, and ${last}`;
+  return `(${list.join(", ")}, and ${last})`;
 }
 
 // 3) Initialize color-combo buttons
