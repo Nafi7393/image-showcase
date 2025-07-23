@@ -23,7 +23,6 @@ def convert_to_resized_jpg(file_path, counter):
 
             # Skip if already JPG and height is 1200px
             if file_path.lower().endswith('.jpg') and height == 1200:
-                print(f"[{counter}] Skipped (already valid): {file_path}")
                 return
 
             # Resize image to 1200px height

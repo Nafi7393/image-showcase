@@ -1,35 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Image Showcase</title>
-  <link href="favicon.png" rel="shortcut icon" type="image/x-icon" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Image Showcase</title>
+    <link href="favicon.png" rel="shortcut icon" type="image/x-icon" />
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
 
-  <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
-</head>
-<body>
-  <aside class="sidebar">
-    <h2>Art Styles</h2>
-    <input id="folder-search" class="search folder-search" placeholder="Search Art Styles…" />
-    <ul id="folder-list" class="folder-list"></ul>
-  </aside>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <aside class="sidebar">
+      <h2>Art Styles</h2>
+      <input id="folder-search" class="search folder-search" placeholder="Search Art Styles…" />
+      <ul id="folder-list" class="folder-list"></ul>
+    </aside>
 
-  <main class="main-content">
-    <header>
-      <div class="folder-header">
-        <h1 id="current-folder">Select a Style</h1>
-        <button id="shuffle-btn" class="shuffle-btn">🔀 Shuffle</button>
-      </div>
-      <input id="image-search" class="search image-search" placeholder="Search Images…" />
-    </header>
-    <div id="gallery" class="gallery"></div>
-  </main>
+    <main class="main-content">
+      <header>
+        <div class="folder-header">
+          <h1 id="current-folder">Select a Style</h1>
+          <button id="shuffle-btn" class="shuffle-btn">🔀 Shuffle</button>
+        </div>
+        <input id="image-search" class="search image-search" placeholder="Search Images…" />
+      </header>
 
-  <div id="toast" class="toast">Copied!</div>
-</body>
+      <section id="color-combination" class="color-combo">
+        <h2>Color Combination</h2>
+        <div class="combo-buttons">
+          <button data-count="2">Two color combination</button>
+          <button data-count="3">Three color combination</button>
+          <button data-count="random">Random number of color combinations</button>
+        </div>
+      </section>
+
+      <div id="gallery" class="gallery"></div>
+    </main>
+
+    <div id="toast" class="toast">Copied!</div>
+  </body>
 </html>

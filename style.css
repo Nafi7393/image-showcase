@@ -24,7 +24,7 @@
 body {
   display: flex;
   height: 100vh;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   background: var(--main-bg);
   color: var(--text);
 }
@@ -152,7 +152,6 @@ header h1 {
   transform: translateY(-4px);
 }
 
-
 /* Copy Icon */
 .copy-icon {
   position: absolute;
@@ -187,4 +186,34 @@ header h1 {
 }
 .toast.show {
   opacity: 1;
+}
+
+/* Color Combination Section */
+#color-combination {
+  background: #000000;
+  padding: var(--gap);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: var(--gap);
+}
+#color-combination h2 {
+  margin-bottom: 0.75rem;
+  color: #ffffff;
+  font-size: 1.25rem;
+}
+.combo-buttons button {
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: 2px solid #ffffff;
+  background: transparent;
+  color: #ffffff;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.combo-buttons button:hover {
+  background: #ffffff;
+  color: #000000;
+  border: 4px solid #ffffff;
 }
