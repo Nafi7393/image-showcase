@@ -129,7 +129,6 @@ header h1 {
 }
 
 .image-container img {
-  display: block;
   width: 100%;
   height: auto;
   border-radius: var(--radius);
@@ -217,10 +216,27 @@ header h1 {
   color: #000000;
 }
 
+/* make the palette container flex, so swatches line up */
 #color-display {
   margin-top: 0.9rem;
   margin-bottom: 0.6rem;
-  font-style: italic;
-  color: #ffffff;
   font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* each color swatch */
+.color-swatch {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  border: 1px solid #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* optional: small label for the names */
+.color-label {
+  font-style: italic;
+  color: #fff;
 }
