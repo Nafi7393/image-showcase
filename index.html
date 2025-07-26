@@ -33,11 +33,54 @@
 
       <section id="color-combination" class="color-combo">
         <h2>Color Combination</h2>
-        <div class="combo-buttons">
-          <button data-count="2">Two color combination</button>
-          <button data-count="3">Three color combination</button>
-          <button data-count="random">Random number of color combinations</button>
+        <div class="main-color-control">
+          <label>
+            <input type="checkbox" id="use-main-color" />
+            Use my main color:
+          </label>
+          <input type="color" id="main-color-picker" value="#fcd303" />
+
+          <label style="margin-left: 1.5rem">
+            <input type="checkbox" id="ignore-csv" />
+            Ignore CSV & show hex codes
+          </label>
         </div>
+
+        <div class="harmony-control">
+          <label for="harmony-method">Harmony:</label>
+          <select id="harmony-method">
+            <optgroup label="Color Theory">
+              <option value="">Random</option>
+              <option value="complementary">Complementary</option>
+              <option value="analogous">Analogous</option>
+              <option value="split">Split Complementary</option>
+              <option value="triadic">Triadic</option>
+              <option value="side">Side Complementary</option>
+              <option value="doubleComp">Double Complementary</option>
+              <option value="square">Square Tetradic</option>
+              <option value="double-split">Double Split Complementary</option>
+            </optgroup>
+            <optgroup label="Natural">
+              <option value="warm">Warm</option>
+              <option value="cool">Cool</option>
+              <option value="dark">Dark</option>
+              <option value="light">Light</option>
+              <option value="pastel">Pastel</option>
+              <option value="muted">Muted</option>
+              <option value="vibrant">Vibrant</option>
+              <option value="neutral">Neutral</option>
+              <option value="earthy">Earthy</option>
+            </optgroup>
+          </select>
+
+          <button id="generate-palette">Generate Palette</button>
+
+          <div class="combo-buttons">
+            <button data-count="2">Two color combination</button>
+            <button data-count="3">Three color combination</button>
+          </div>
+        </div>
+
         <div id="color-display" class="color-display"></div>
       </section>
 

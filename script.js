@@ -10,6 +10,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   const headerTitle = document.getElementById("current-folder");
   const shuffleBtn = document.getElementById("shuffle-btn");
   const toast = document.getElementById("toast");
+
+  // Color UI
+  const useMainCB = document.getElementById("use-main-color");
+  const colorPicker = document.getElementById("main-color-picker");
+  const ignoreCsvCB = document.getElementById("ignore-csv");
+  const harmonySelect = document.getElementById("harmony-method");
+  const generateBtn = document.getElementById("generate-palette");
+  const comboBtns = document.querySelectorAll(".combo-buttons button");
   const colorDisplay = document.getElementById("color-display");
 
   // 3) Globals
@@ -22,8 +30,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   await loadColorsCSV();
   initColorCombination();
 
-  // 5) Render folder list
+  // 5) Folder list
   const sortedFolders = ["Prompts", ...folders.sort((a, b) => a.localeCompare(b))];
+  renderFolders(sortedFolders);
+  folderSearch.oninput = () => {
+    const term = folderSearch.value.toLowerCase();
+    renderFolders(sortedFolders.filter((f) => f.toLowerCase().includes(term)));
+  };
+
   function renderFolders(list) {
     folderList.innerHTML = "";
     list.forEach((name) => {
@@ -34,15 +48,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       folderList.appendChild(li);
     });
   }
-  renderFolders(sortedFolders);
 
-  // 6) Folder search filter
-  folderSearch.oninput = () => {
-    const term = folderSearch.value.toLowerCase();
-    renderFolders(sortedFolders.filter((f) => f.toLowerCase().includes(term)));
-  };
-
-  // 7) Select folder
   async function selectFolder(li, name) {
     folderList.querySelectorAll("li").forEach((x) => x.classList.remove("active"));
     li.classList.add("active");
@@ -55,144 +61,127 @@ document.addEventListener("DOMContentLoaded", async () => {
       initColorCombination();
       return;
     }
-
     if (!images[name]) {
-      gallery.innerHTML = `<div style="font-size:1.2rem;">No images found for this folder.</div>`;
+      gallery.innerHTML = `<div style="font-size:1.2rem;">No images found.</div>`;
       return;
     }
-
     originalOrder = [...images[name]].sort((a, b) => a.localeCompare(b));
     renderImages(originalOrder);
   }
 
-  // 8) Render images
+  // 6) Images
   function renderImages(urls) {
     gallery.innerHTML = "";
     urls.forEach((src) => {
       const card = document.createElement("div");
       card.className = "image-container";
-
       const img = document.createElement("img");
       img.src = src;
       card.appendChild(img);
-
       const icon = document.createElement("div");
       icon.className = "copy-icon";
       icon.textContent = "📋";
       card.appendChild(icon);
-
-      card.onclick = async () => {
-        try {
-          const imgEl = new Image();
-          imgEl.crossOrigin = "anonymous";
-          imgEl.src = src;
-          imgEl.onload = () => {
-            const canvas = document.createElement("canvas");
-            canvas.width = imgEl.naturalWidth;
-            canvas.height = imgEl.naturalHeight;
-            const ctx = canvas.getContext("2d");
-            ctx.drawImage(imgEl, 0, 0);
-            canvas.toBlob(async (blob) => {
-              if (!blob) return alert("❌ Failed to convert to PNG.");
-              try {
-                await navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
-                showToast();
-              } catch {
-                alert("Copy failed. Your browser may block it.");
-              }
-            }, "image/png");
-          };
-          imgEl.onerror = () => alert("❌ Image failed to load.");
-        } catch {
-          alert("Unexpected error during copy.");
-        }
-      };
-
+      card.onclick = copyImageToClipboard;
       gallery.appendChild(card);
     });
   }
 
-  // 9) Image search filter
+  function copyImageToClipboard() {
+    const src = this.querySelector("img").src;
+    const imgEl = new Image();
+    imgEl.crossOrigin = "anonymous";
+    imgEl.src = src;
+    imgEl.onload = () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = imgEl.naturalWidth;
+      canvas.height = imgEl.naturalHeight;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(imgEl, 0, 0);
+      canvas.toBlob(async (blob) => {
+        if (!blob) return alert("❌ Failed to convert image.");
+        try {
+          await navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
+          showToast();
+        } catch {
+          alert("❌ Copy blocked by browser.");
+        }
+      }, "image/png");
+    };
+    imgEl.onerror = () => alert("❌ Image load error.");
+  }
+
   imageSearch.oninput = () => {
     const term = imageSearch.value.toLowerCase();
     document.querySelectorAll(".image-container").forEach((div) => {
-      const filename = div.querySelector("img")?.src.split("/").pop().toLowerCase() || "";
-      div.style.display = filename.includes(term) ? "" : "none";
+      const fn = div.querySelector("img")?.src.split("/").pop().toLowerCase() || "";
+      div.style.display = fn.includes(term) ? "" : "none";
     });
   };
 
-  // 🔀 10) Shuffle
   shuffleBtn.onclick = () => {
     if (currentFolder === "Prompts" || !images[currentFolder]) return;
-    const shuffled = [...originalOrder].sort(() => Math.random() - 0.5);
-    renderImages(shuffled);
+    renderImages([...originalOrder].sort(() => Math.random() - 0.5));
   };
 
-  // 11) Load prompts
+  // 7) Prompts panel
   async function loadPrompts() {
     const { prompts } = await fetch("prompts.json").then((r) => r.json());
     gallery.innerHTML = "";
     headerTitle.textContent = "Prompts";
-    prompts.forEach((prompt) => {
-      const card = document.createElement("div");
-      card.className = "image-container";
-
-      const title = document.createElement("div");
-      title.textContent = prompt.title;
-      Object.assign(title.style, {
+    prompts.forEach((p) => {
+      const c = document.createElement("div");
+      c.className = "image-container";
+      const t = document.createElement("div");
+      t.textContent = p.title;
+      Object.assign(t.style, {
         padding: "1rem",
         fontWeight: "bold",
         textAlign: "center",
         background: "var(--accent)",
         color: "#fff",
       });
-      card.appendChild(title);
-
-      const icon = document.createElement("div");
-      icon.className = "copy-icon";
-      icon.textContent = "📋";
-      card.appendChild(icon);
-
-      card.onclick = async () => {
+      c.appendChild(t);
+      const ic = document.createElement("div");
+      ic.className = "copy-icon";
+      ic.textContent = "📋";
+      c.appendChild(ic);
+      c.onclick = async () => {
         try {
-          await navigator.clipboard.writeText(prompt.description);
+          await navigator.clipboard.writeText(p.description);
           showToast();
         } catch {
-          alert("Failed to copy prompt.");
+          alert("❌ Copy failed.");
         }
       };
-
-      gallery.appendChild(card);
+      gallery.appendChild(c);
     });
   }
 
-  // ——————————————————————————————————————————————
-  // —— CSV loader + color‑matching math + visuals
-  // ——————————————————————————————————————————————
-
+  // 8) Load colors.csv
   async function loadColorsCSV() {
     try {
       const text = await fetch("colors.csv").then((r) => r.text());
-      const [header, ...lines] = text.trim().split("\n");
+      const [, ...lines] = text.trim().split("\n");
       colorList.length = 0;
-
       lines.forEach((line) => {
-        let [rawName, r, g, b] = line.split(",").map((c) => c.trim());
-        const name = rawName
+        const [raw, r, g, b] = line.split(",").map((c) => c.trim());
+        const name = raw
           .split(" ")
-          .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+          .map((w) => w[0].toUpperCase() + w.slice(1).toLowerCase())
           .join(" ");
-        const rr = parseInt(r, 10),
-          gg = parseInt(g, 10),
-          bb = parseInt(b, 10);
+        const rr = +r,
+          gg = +g,
+          bb = +b;
         const { h, s, l } = rgbToHsl(rr, gg, bb);
         colorList.push({ name, r: rr, g: gg, b: bb, h, s, l });
       });
-    } catch (err) {
-      console.error("❌ Failed to load colors.csv", err);
+    } catch {
+      console.error("❌ Failed to load colors.csv");
     }
   }
 
+  // 9) Color math
   function rgbToHsl(r, g, b) {
     r /= 255;
     g /= 255;
@@ -220,91 +209,224 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
     return { h: h * 360, s: s * 100, l: l * 100 };
   }
-
-  function findNearestByHue(targetHue) {
+  function hslToRgb(h, s, l) {
+    s /= 100;
+    l /= 100;
+    const c = (1 - Math.abs(2 * l - 1)) * s;
+    const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+    const m = l - c / 2;
+    let r1 = 0,
+      g1 = 0,
+      b1 = 0;
+    if (h < 60) {
+      r1 = c;
+      g1 = x;
+    } else if (h < 120) {
+      r1 = x;
+      g1 = c;
+    } else if (h < 180) {
+      g1 = c;
+      b1 = x;
+    } else if (h < 240) {
+      g1 = x;
+      b1 = c;
+    } else if (h < 300) {
+      r1 = x;
+      b1 = c;
+    } else {
+      r1 = c;
+      b1 = x;
+    }
+    return {
+      r: Math.round((r1 + m) * 255),
+      g: Math.round((g1 + m) * 255),
+      b: Math.round((b1 + m) * 255),
+    };
+  }
+  function rgbToHex(r, g, b) {
+    return "#" + [r, g, b].map((v) => v.toString(16).padStart(2, "0")).join("");
+  }
+  function findNearestByHue(hue) {
     return colorList.reduce((best, c) => {
-      const bd = Math.min(Math.abs(best.h - targetHue), 360 - Math.abs(best.h - targetHue));
-      const cd = Math.min(Math.abs(c.h - targetHue), 360 - Math.abs(c.h - targetHue));
+      const bd = Math.min(Math.abs(best.h - hue), 360 - Math.abs(best.h - hue));
+      const cd = Math.min(Math.abs(c.h - hue), 360 - Math.abs(c.h - hue));
       return cd < bd ? c : best;
     });
   }
 
-  function getComplementaryColors() {
-    const base = colorList[Math.floor(Math.random() * colorList.length)];
-    const comp = findNearestByHue((base.h + 180) % 360);
-    return [base, comp];
+  // 10) Helpers for natural modes
+  function evenlySpacedHues(baseH, n) {
+    return Array.from({ length: n }, (_, i) => (baseH + (360 / n) * i) % 360);
+  }
+  function warmMode(n) {
+    const base = Math.random() * 90; // 0–90°
+    return evenlySpacedHues(base, n).map((h) => ({ h, s: 80, l: 50 }));
+  }
+  function coolMode(n) {
+    const base = 180 + Math.random() * 120; //180–300°
+    return evenlySpacedHues(base, n).map((h) => ({ h, s: 60, l: 50 }));
+  }
+  function darkMode(n) {
+    const base = Math.random() * 360;
+    return evenlySpacedHues(base, n).map((h) => ({ h, s: 50, l: 25 }));
+  }
+  function lightMode(n) {
+    const base = Math.random() * 360;
+    return evenlySpacedHues(base, n).map((h) => ({ h, s: 50, l: 85 }));
+  }
+  function pastelMode(n) {
+    const base = Math.random() * 360;
+    return evenlySpacedHues(base, n).map((h) => ({ h, s: 30, l: 85 }));
+  }
+  function mutedMode(n) {
+    const base = Math.random() * 360;
+    return evenlySpacedHues(base, n).map((h) => ({ h, s: 30, l: 50 }));
+  }
+  function vibrantMode(n) {
+    const base = Math.random() * 360;
+    return evenlySpacedHues(base, n).map((h) => ({ h, s: 90, l: 50 }));
+  }
+  function neutralMode(n) {
+    // greys: ignore hue
+    return Array.from({ length: n }, (_, i) => ({ h: 0, s: 0, l: ((i + 1) / (n + 1)) * 100 }));
+  }
+  function earthyMode(n) {
+    const starts = [30, 60, 90]; // brownish-yellow
+    const base = starts[Math.floor(Math.random() * starts.length)];
+    return evenlySpacedHues(base, n).map((h) => ({ h, s: 50, l: 40 }));
   }
 
-  function getTriadicColors() {
-    const base = colorList[Math.floor(Math.random() * colorList.length)];
-    const c1 = findNearestByHue((base.h + 120) % 360);
-    const c2 = findNearestByHue((base.h + 240) % 360);
-    return [base, c1, c2];
-  }
+  // 11) methodMap
+  const methodMap = {
+    complementary: {
+      name: "Complementary",
+      fn: (h) => [h, (h + 180) % 360].map((x) => ({ h: x })),
+    },
+    analogous: {
+      name: "Analogous",
+      fn: (h) => [h, (h + 30) % 360, (h + 330) % 360].map((x) => ({ h: x })),
+    },
+    split: {
+      name: "Split Compl.",
+      fn: (h) => [h, (h + 150) % 360, (h + 210) % 360].map((x) => ({ h: x })),
+    },
+    triadic: {
+      name: "Triadic",
+      fn: (h) => [h, (h + 120) % 360, (h + 240) % 360].map((x) => ({ h: x })),
+    },
+    side: {
+      name: "Side Compl.",
+      fn: (h) => {
+        const comp = (h + 180) % 360;
+        return [{ h }, { h: (comp + 30) % 360 }, { h: comp }];
+      },
+    },
+    doubleComp: {
+      name: "Double Compl.",
+      fn: (h) => [0, 60, 180, 240].map((o) => ({ h: (h + o) % 360 })),
+    },
+    square: {
+      name: "Square Tetradic",
+      fn: (h) => [0, 90, 180, 270].map((o) => ({ h: (h + o) % 360 })),
+    },
+    "double-split": {
+      name: "Double Split",
+      fn: (h) => evenlySpacedHues(h, 5).map((x) => ({ h: x })),
+    },
+    warm: { name: "Warm", fn: (_, n) => warmMode(n) },
+    cool: { name: "Cool", fn: (_, n) => coolMode(n) },
+    dark: { name: "Dark", fn: (_, n) => darkMode(n) },
+    light: { name: "Light", fn: (_, n) => lightMode(n) },
+    pastel: { name: "Pastel", fn: (_, n) => pastelMode(n) },
+    muted: { name: "Muted", fn: (_, n) => mutedMode(n) },
+    vibrant: { name: "Vibrant", fn: (_, n) => vibrantMode(n) },
+    neutral: { name: "Neutral", fn: (_, n) => neutralMode(n) },
+    earthy: { name: "Earthy", fn: (_, n) => earthyMode(n) },
+  };
 
-  // N-color evenly spaced (for N = 2…6)
-  function getNColors(n) {
-    const base = colorList[Math.floor(Math.random() * colorList.length)];
-    return Array.from({ length: n }, (_, i) => {
-      const hue = (base.h + (360 / n) * i) % 360;
-      return findNearestByHue(hue);
-    });
-  }
-
-  function formatCombination(list) {
-    if (list.length === 2) {
-      return `(${list[0]} and ${list[1]})`;
+  // 12) generatePalette + init
+  async function generatePalette({ countOverride = null } = {}) {
+    const N = countOverride || Math.floor(Math.random() * 5) + 2;
+    let baseH,
+      baseS = 70,
+      baseL = 50;
+    if (useMainCB.checked) {
+      const hex = colorPicker.value;
+      ({
+        h: baseH,
+        s: baseS,
+        l: baseL,
+      } = rgbToHsl(
+        parseInt(hex.slice(1, 3), 16),
+        parseInt(hex.slice(3, 5), 16),
+        parseInt(hex.slice(5, 7), 16)
+      ));
+    } else {
+      baseH = Math.random() * 360;
     }
-    const items = [...list],
-      last = items.pop();
-    return `(${items.join(", ")}, and ${last})`;
+    // pick method
+    let key = harmonySelect.value;
+    if (!key || !methodMap[key]) {
+      const keys = Object.keys(methodMap);
+      key = keys[Math.floor(Math.random() * keys.length)];
+    }
+    const methodObj = methodMap[key];
+    // get raw HSL arr
+    const raw =
+      methodObj.fn.length === 1
+        ? methodObj.fn(baseH).slice(0, N) // legacy fn(h)
+        : methodObj.fn(baseH, N); // new fn(h,n)
+    const hslArr = raw.map((o) => ({
+      h: o.h,
+      s: o.s != null ? o.s : baseS,
+      l: o.l != null ? o.l : baseL,
+    }));
+
+    // build final combos
+    const combo = hslArr.map(({ h, s, l }) => {
+      if (ignoreCsvCB.checked) {
+        const { r, g, b } = hslToRgb(h, s, l);
+        return { name: rgbToHex(r, g, b), r, g, b };
+      }
+      return findNearestByHue(h);
+    });
+
+    // render
+    colorDisplay.innerHTML = "";
+    combo.forEach((c) => {
+      const sw = document.createElement("div");
+      sw.className = "color-swatch";
+      sw.style.background = `rgb(${c.r},${c.g},${c.b})`;
+      sw.title = c.name;
+      colorDisplay.appendChild(sw);
+    });
+    const names = combo.map((c) => c.name);
+    let text =
+      N === 2
+        ? `(${names[0]} and ${names[1]})`
+        : `(${names.slice(0, -1).join(", ")}, and ${names.slice(-1)})`;
+    const label = document.createElement("span");
+    label.className = "color-label";
+    label.textContent = `${methodObj.name}: ${text}`;
+    colorDisplay.appendChild(label);
+
+    try {
+      await navigator.clipboard.writeText(text);
+      showToast();
+    } catch {
+      alert("❌ Failed to copy.");
+    }
+  }
+
+  function initColorCombination() {
+    generateBtn.onclick = () => generatePalette();
+    comboBtns.forEach((btn) => {
+      btn.onclick = () => generatePalette({ countOverride: parseInt(btn.dataset.count, 10) });
+    });
   }
 
   function showToast() {
     toast.classList.add("show");
     setTimeout(() => toast.classList.remove("show"), 1000);
-  }
-
-  function initColorCombination() {
-    if (!colorDisplay || colorList.length === 0) return;
-
-    document.querySelectorAll("#color-combination button").forEach((btn) => {
-      btn.addEventListener("click", async () => {
-        let combo;
-        const cnt = btn.dataset.count;
-        if (cnt === "2") {
-          combo = getComplementaryColors();
-        } else if (cnt === "3") {
-          combo = getTriadicColors();
-        } else {
-          // random: pick N between 2 and 6
-          const N = Math.floor(Math.random() * 5) + 2;
-          combo = getNColors(N);
-        }
-
-        // render swatches + text
-        colorDisplay.innerHTML = "";
-        combo.forEach((c) => {
-          const sw = document.createElement("div");
-          sw.className = "color-swatch";
-          sw.style.background = `rgb(${c.r}, ${c.g}, ${c.b})`;
-          sw.title = c.name;
-          colorDisplay.appendChild(sw);
-        });
-        const names = combo.map((c) => c.name);
-        const label = document.createElement("span");
-        label.className = "color-label";
-        label.textContent = formatCombination(names);
-        colorDisplay.appendChild(label);
-
-        // copy to clipboard
-        try {
-          await navigator.clipboard.writeText(label.textContent);
-          showToast();
-        } catch {
-          alert("❌ Failed to copy color combination.");
-        }
-      });
-    });
   }
 });
