@@ -35,6 +35,10 @@
     {
       "title": "Be More Colorful",
       "description": "MUST NOTE::::  Be more abstract, use more colorful bright colors. also uses other colors"
+    },
+    {
+      "title": "Transparency: False",
+      "description": "png_transparency: False"
     }
   ]
 }
