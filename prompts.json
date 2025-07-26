@@ -21,10 +21,6 @@
       "description": "-- It's a Black and White style artwork, so make it more like it - monochromatic style."
     },
     {
-      "title": "Contemporary Art Tigger",
-      "description": "-- It's a Contemporary style artwork, so make it more like it.\n-- Give me options with the new best color combos. (Don't change the white; keep the white color level as the provided image, only give options for the other color)"
-    },
-    {
       "title": "All Subject's Including Text",
       "description": "MUST NOTE::::  All the subjects must be included in the artwork; each and every subject must maintain its original color and features; the size of the subjects must be exactly the same as in the original image."
     },
@@ -35,6 +31,10 @@
     {
       "title": "Be More White",
       "description": "MUST NOTE::::  Be more abstract, use more white bright colors. also uses other colors"
+    },
+    {
+      "title": "Be More Colorful",
+      "description": "MUST NOTE::::  Be more abstract, use more colorful bright colors. also uses other colors"
     }
   ]
 }
