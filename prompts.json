@@ -39,6 +39,10 @@
     {
       "title": "Transparency: False",
       "description": "png_transparency: False"
+    },
+    {
+      "title": "Provide Filename",
+      "description": "Can you please provide the filename of the artwork? in which you need the edits on the artwork. Or are you looking to get totally new artwork?"
     }
   ]
 }
