@@ -41,8 +41,8 @@
       "description": "png_transparency: False"
     },
     {
-      "title": "Provide Filename",
-      "description": "Is there a specific artwork in which you would like the edits? Then, can you please mention the filename of that artwork? Or are you looking for totally new artworks?"
+      "title": "MY PROMPT",
+      "description": "Please teach me like I'm a beginner or a child. Give your explanation mostly in English, but use Bangla (বাংলা) to help me understand clearly. Mix both languages naturally so I can learn English terms while truly understanding the concepts in Bangla."
     }
   ]
 }
