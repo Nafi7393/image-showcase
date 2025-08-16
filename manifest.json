@@ -1,6 +1,7 @@
 {
   "folders": [
     "Abstract Style",
+    "Backgrounds",
     "Black & White Style",
     "Cartoon Style",
     "Contemporary Style",
@@ -88,16 +89,24 @@
       "Sample List/Abstract Style/68 - Abstract Style.jpg",
       "Sample List/Abstract Style/69 - Abstract Style.jpg",
       "Sample List/Abstract Style/70 - Abstract Style.jpg",
-      "Sample List/Abstract Style/71 - Abstract Style.jpg",
-      "Sample List/Abstract Style/BACK - 1 - Abstract Style.jpg",
-      "Sample List/Abstract Style/BACK - 2 - Abstract Style.jpg",
-      "Sample List/Abstract Style/BACK - 3 - Abstract Style.jpg",
-      "Sample List/Abstract Style/BACK - 4 - Abstract Style.jpg",
-      "Sample List/Abstract Style/BACK - 5 - Abstract Style.jpg",
-      "Sample List/Abstract Style/BACK - 6 - Abstract Style.jpg"
+      "Sample List/Abstract Style/71 - Abstract Style.jpg"
+    ],
+    "Backgrounds": [
+      "Sample List/Backgrounds/Abstract Style - 1.jpg",
+      "Sample List/Backgrounds/Abstract Style - 2.jpg",
+      "Sample List/Backgrounds/Abstract Style - 3.jpg",
+      "Sample List/Backgrounds/Abstract Style - 4.jpg",
+      "Sample List/Backgrounds/Abstract Style - 5.jpg",
+      "Sample List/Backgrounds/Abstract Style - 6.jpg",
+      "Sample List/Backgrounds/Black & White Style - 1.jpg",
+      "Sample List/Backgrounds/Geometric Style - 1.jpg",
+      "Sample List/Backgrounds/Geometric Style - 2.jpg",
+      "Sample List/Backgrounds/Geometric Style - 3.jpg",
+      "Sample List/Backgrounds/Geometric Style - 4.jpg",
+      "Sample List/Backgrounds/Van Gogh Style - 1.jpg",
+      "Sample List/Backgrounds/Van Gogh Style - 2.jpg"
     ],
     "Black & White Style": [
-      "Sample List/Black & White Style/00 - Black & White Style.jpg",
       "Sample List/Black & White Style/1 - Black & White Style.jpg",
       "Sample List/Black & White Style/2 - Black & White Style.jpg",
       "Sample List/Black & White Style/3 - Black & White Style.jpg",
@@ -250,11 +259,7 @@
       "Sample List/Geometric Style/24 - Geometric Style.jpg",
       "Sample List/Geometric Style/25 - Geometric Style.jpg",
       "Sample List/Geometric Style/26 - Geometric Style.jpg",
-      "Sample List/Geometric Style/27 - Geometric Style.jpg",
-      "Sample List/Geometric Style/BACK - 1 - Geometric Style.jpg",
-      "Sample List/Geometric Style/BACK - 2 - Geometric Style.jpg",
-      "Sample List/Geometric Style/BACK - 3 - Geometric Style.jpg",
-      "Sample List/Geometric Style/BACK - 4 - Geometric Style.jpg"
+      "Sample List/Geometric Style/27 - Geometric Style.jpg"
     ],
     "Graffiti Cartoon Style": [
       "Sample List/Graffiti Cartoon Style/1 - Graffiti Cartoon Style.jpg",
@@ -349,7 +354,6 @@
       "Sample List/Pop Art Style/28 - Pop Art Style.jpg"
     ],
     "Van Gogh Style": [
-      "Sample List/Van Gogh Style/00 - Van Gogh Style.jpg",
       "Sample List/Van Gogh Style/1 - Van Gogh Style.jpg",
       "Sample List/Van Gogh Style/2 - Van Gogh Style.jpg",
       "Sample List/Van Gogh Style/3 - Van Gogh Style.jpg",
@@ -387,8 +391,7 @@
       "Sample List/Van Gogh Style/35 - Van Gogh Style.jpg",
       "Sample List/Van Gogh Style/36 - Van Gogh Style.jpg",
       "Sample List/Van Gogh Style/37 - Van Gogh Style.jpg",
-      "Sample List/Van Gogh Style/38 - Van Gogh Style.jpg",
-      "Sample List/Van Gogh Style/50 - Van Gogh Style.jpg"
+      "Sample List/Van Gogh Style/38 - Van Gogh Style.jpg"
     ],
     "Watercolor Style": [
       "Sample List/Watercolor Style/1 - Watercolor Style.jpg",
