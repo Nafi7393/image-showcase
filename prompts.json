@@ -1,44 +1,44 @@
 {
   "prompts": [
     {
-      "title": "1 Subject - Abstract Art",
-      "description": "Take the DOG from the photographic images, then transform it into the style of the last provided artwork image.\nMake sure the subject's original colors and details stay perfectly intact in the new artwork. Remove the existing object from the artwork and replace it with my subject. Make sure my subject shape and color are accurate to the provided photographic images.\n\nNOTE: THE COLOR AND EVERY FEATURE OF THE SUBJECT FROM THE PHOTOGRAPHIC IMAGE MUST REMAIN EXACTLY THE SAME. (SUPER IMPORTANT)\nThe subject's eyes, face, markings, skin/fur features, and coloring must be preserved with full accuracy inside the artwork.\n(IT IS NOT A PNG IMAGE, SO MAKE SURE TO APPLY ALL COLORS ALL OVER THE CANVAS — no transparency.)\n\n-- Every feature and color of the subject must be copied exactly into the artwork.\n-- Mimic the artwork style as closely as possible, but keep the subject realistic and intact.\n-- The final result must have the same abstract-art feel, with dynamic brushwork, expressive strokes, and artistic textures.\n-- Provide multiple options with the best color combinations while keeping the subject accurate.\n-- LOCK ASPECT RATIO TO 2:3, do not crop or change framing. (If extra space exists, fill it with abstract colors, brushstrokes, and splatters, NOT duplicate subjects.)\n\n-- Do not duplicate or repeat the subject. Only one subject must appear in the artwork."
+      "title": "1 Pet - Abstract Art",
+      "description": "Take the DOG from the photographic images, then transform the subject into the style of the last provided artwork image.\nMake sure the subject's original colors and details stay perfectly intact in the new artwork.\nRemove the existing object from the artwork and replace it with my subject in the exact same spot.\n\nNOTE: THE COLOR AND EVERY FEATURE OF THE SUBJECT FROM THE PHOTOGRAPHIC IMAGE MUST REMAIN EXACTLY THE SAME. (SUPER IMPORTANT)\nThe subject's eyes, ears, nose, facial markings, skin features, and fur coloring must be preserved with full accuracy inside the artwork.\n(IT IS NOT A PNG IMAGE, SO MAKE SURE TO APPLY ALL COLORS ALL OVER THE CANVAS — no transparency.)\n\n-- Every feature and color of the subject must be copied exactly into the artwork.\n-- Mimic the artwork style as closely as possible, but keep the subject realistic and intact.\n-- The final result must have the same abstract-art feel, with dynamic brushwork, expressive strokes, and artistic textures.\n-- Provide multiple options with the best color combinations while keeping the subject accurate."
     },
     {
-      "title": "2 Subjects - Abstract Art",
-      "description": "Take the two dogs from the photographic images, then transform them into the style of the last provided artwork image.\nMake sure the subjects' original colors and details stay perfectly intact in the new artwork. Remove the existing object from the artwork and replace it with all of my subjects. Make sure all of my subjects shape and color are accurate to the provided photographic images.\n\nNOTE: THE COLOR AND EVERY FEATURE OF THE SUBJECTS FROM THE PHOTOGRAPHIC IMAGES MUST REMAIN EXACTLY THE SAME. (SUPER IMPORTANT)\nThe subjects' eyes, faces, markings, skin/fur features, and coloring must be preserved with full accuracy inside the artwork.\n(IT IS NOT A PNG IMAGE, SO MAKE SURE TO APPLY ALL COLORS ALL OVER THE CANVAS — no transparency.)\n\n-- Every feature and color of both subjects must be copied exactly into the artwork.\n-- Mimic the artwork style as closely as possible, but keep the subjects realistic and intact.\n-- The final result must have the same abstract-art feel, with dynamic brushwork, expressive strokes, and artistic textures.\n-- Ensure that both subjects are included fully and accurately in the artwork.\n-- Provide multiple options with the best color combinations while keeping the subjects accurate.\n-- LOCK ASPECT RATIO TO 2:3, do not crop or change framing. (If extra space exists, fill it with abstract colors, brushstrokes, and splatters, NOT duplicate subjects.)"
+      "title": "2 Pet - Abstract Art",
+      "description": "Take the two DOGS from the photographic images, then transform the subjects into the style of the last provided artwork image.\nMake sure the subjects' original colors and details stay perfectly intact in the new artwork.\nRemove the existing object from the artwork and replace it with both subjects in the exact same spot.\n\nNOTE: THE COLOR AND EVERY FEATURE OF THE SUBJECTS FROM THE PHOTOGRAPHIC IMAGES MUST REMAIN EXACTLY THE SAME. (SUPER IMPORTANT)\nThe subjects' eyes, ears, noses, facial markings, skin features, and fur coloring must be preserved with full accuracy inside the artwork.\n(IT IS NOT A PNG IMAGE, SO MAKE SURE TO APPLY ALL COLORS ALL OVER THE CANVAS — no transparency.)\n\n-- Every feature and color of both subjects must be copied exactly into the artwork.\n-- Mimic the artwork style as closely as possible, but keep the subjects realistic and intact.\n-- The final result must have the same abstract-art feel, with dynamic brushwork, expressive strokes, and artistic textures.\n-- Ensure that both subjects are included fully and accurately in the artwork.\n-- Provide multiple options with the best color combinations while keeping the subjects accurate."
     },
     {
-      "title": "1 Subject & 1 Human - Abstract Art",
-      "description": "Take the two subjects from the photographic images (a HUMAN and a PET/ANIMAL), then transform them into the style of the last provided artwork image.\nMake sure the subjects' original colors and details stay perfectly intact in the new artwork. Remove the existing object from the artwork and replace it with my subjects. Make sure my all subjects shape and color are accurate to the provided photographic images.\n\nNOTE: THE COLOR AND EVERY FEATURE OF THE SUBJECTS FROM THE PHOTOGRAPHIC IMAGES MUST REMAIN EXACTLY THE SAME. (SUPER IMPORTANT)\nThe subjects' eyes, faces, markings, skin/fur features, and coloring must be preserved with full accuracy inside the artwork.\n(IT IS NOT A PNG IMAGE, SO MAKE SURE TO APPLY ALL COLORS ALL OVER THE CANVAS — no transparency.)\n\n-- Every feature and color of both subjects must be copied exactly into the artwork.\n-- Mimic the artwork style as closely as possible, but keep the subjects realistic and intact.\n-- The final result must have the same abstract-art feel, with dynamic brushwork, expressive strokes, and artistic textures.\n-- Ensure that both subjects are included fully and accurately in the artwork.\n-- Provide multiple options with the best color combinations while keeping the subjects accurate.\n-- LOCK ASPECT RATIO TO 2:3, do not crop or change framing. (If extra space exists, fill it with abstract colors, brushstrokes, and splatters, NOT duplicate subjects.)"
+      "title": "1 Pet & 1 Human - Abstract Art",
+      "description": "Take the two subjects from the photographic images (a DOG and a HUMAN), then transform them into the style of the last provided artwork image.\nMake sure the subjects' original colors and details stay perfectly intact in the new artwork.\nRemove the existing object from the artwork and replace it with both subjects in the exact same spot.\n\nNOTE: THE COLOR AND EVERY FEATURE OF THE SUBJECTS FROM THE PHOTOGRAPHIC IMAGES MUST REMAIN EXACTLY THE SAME. (SUPER IMPORTANT)\nThe subjects' eyes, ears, nose, facial markings, skin features, and coloring must be preserved with full accuracy inside the artwork.\n(IT IS NOT A PNG IMAGE, SO MAKE SURE TO APPLY ALL COLORS ALL OVER THE CANVAS — no transparency.)\n\n-- Every feature and color of both subjects must be copied exactly into the artwork.\n-- Mimic the artwork style as closely as possible, but keep the subjects realistic and intact.\n-- The final result must have the same abstract-art feel, with dynamic brushwork, expressive strokes, and artistic textures.\n-- Ensure that both subjects are included fully and accurately in the artwork.\n-- Provide multiple options with the best color combinations while keeping the subjects accurate."
     },
     {
       "title": "Modern Art Tigger",
-      "description": "-- This is a MODERN-style artwork. Make it more like a realistic painting, with fine details, clear textures, and lifelike brushwork while still carrying artistic depth."
+      "description": "-- It's a Modern-style artwork, so make it more like it. (By modern style, I mean realistic painting art)"
     },
     {
       "title": "Black & White Art Tigger",
-      "description": "-- This is a BLACK & WHITE style artwork. Keep it monochromatic with high contrast, strong highlights, and deep shadows, creating a bold effect."
+      "description": "-- It's a Black and White style artwork, so make it more like it - monochromatic style."
     },
     {
-      "title": "All Subjects Included",
-      "description": "MUST NOTE:::: All subjects from the photographic images must be included in the artwork. Each subject must maintain its exact original colors, features, and proportions. The size and placement of every subject must remain consistent with the reference images."
+      "title": "All Subject's Including Text",
+      "description": "MUST NOTE::::  All the subjects from the photographic images must be included in the artwork; each and every subject must maintain its original color and features; the size of the subjects must be exactly the same as in the original image."
     },
     {
       "title": "Accurate Color & Style",
-      "description": "MUST NOTE:::: Copy the COLOR and STYLE of the provided reference artwork with maximum accuracy. Every brushstroke, texture, depth, and layer must be faithfully mimicked to achieve the same artistic look."
+      "description": "MUST NOTE:::: COPY THE COLOR AND STYLE OF THE PROVIDED REFERENCE ARTWORK TO THE BEST ACCURACY. EVERY BRUSH STROKE AND DEPTH IS MATTERS"
     },
     {
       "title": "Be More White",
-      "description": "MUST NOTE:::: The artwork must be more abstract with a dominant use of WHITE and bright tones. Accentuate lightness while mixing in subtle complementary colors for balance."
+      "description": "MUST NOTE::::  Be more abstract, use more white bright colors. also uses other colors"
     },
     {
       "title": "Be More Colorful",
-      "description": "MUST NOTE:::: The artwork must be more abstract with a rich use of COLORFUL and vibrant tones. Use strong, bright, and dynamic color combinations to enhance the energy of the piece."
+      "description": "MUST NOTE::::  Be more abstract, use more colorful bright colors. also uses other colors"
     },
     {
       "title": "Transparency: False",
-      "description": "MUST NOTE:::: Apply all colors across the full canvas. Do not leave transparent or uncolored areas. png_transparency: False"
+      "description": "png_transparency: False"
     },
     {
       "title": "MY PROMPT",
