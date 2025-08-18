@@ -427,6 +427,7 @@ header h1 {
 .main-color-control label {
   display: flex;
   align-items: center;
+  line-height: 1.2;
   font-size: 0.95rem;
   color: #fff;
   cursor: pointer;
@@ -477,6 +478,10 @@ header h1 {
   cursor: pointer;
   margin-left: 0.75rem;
   margin-right: 1rem;
+}
+
+.ignore_csv {
+  margin-left: 1.5rem; /* space between color picker and ignore checkbox */
 }
 
 /* Harmony dropdown in col1 */
@@ -594,4 +599,226 @@ header h1 {
   column-width: 260px;
   column-gap: var(--gap);
   padding-top: 1rem;
+}
+
+/* ===========================
+   Mobile Drawer Navigation
+   =========================== */
+.nav-toggle {
+  display: none;
+  border: 2px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  border-radius: 999px;
+  padding: 0.4rem 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 999; /* below sidebar (1000) but above page */
+}
+
+@media (max-width: 1024px) {
+  /* Show hamburger on mobile */
+  .nav-toggle {
+    display: inline-block;
+    order: -1; /* make it appear left of the title */
+    align-self: flex-start;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Turn sidebar into off-canvas drawer */
+  .sidebar {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    height: 100dvh;
+    width: 280px;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    /* keep existing styling (bg, padding, etc.) */
+  }
+
+  /* When open */
+  body.nav-open .sidebar {
+    transform: translateX(0);
+  }
+  body.nav-open .nav-overlay {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Page layout stacks (sidebar overlays, not pushing content) */
+  body {
+    flex-direction: column;
+    height: auto;
+  }
+  .main-content {
+    padding: 0.75rem;
+  }
+
+  /* Header stacks; search full-width */
+  header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  .image-search {
+    width: 100%;
+    height: 40px;
+  }
+
+  /* Keep folder list vertical inside drawer */
+  .folder-list {
+    display: block;
+    max-height: calc(100dvh - 140px);
+  }
+
+  /* Color Combination panel stacks */
+  #color-combination {
+    grid-template-columns: 1fr; /* stack all controls vertically */
+    row-gap: 0.75rem;
+    padding: 1rem;
+  }
+  #color-combination h2 {
+    grid-column: auto;
+    font-size: 1.2rem;
+  }
+  .main-color-control {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .harmony-control,
+  #generate-palette,
+  .combo-buttons {
+    grid-column: auto;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  .combo-buttons button,
+  #generate-palette {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+  #color-display {
+    grid-column: auto;
+    justify-content: flex-start;
+  }
+
+  .ignore_csv {
+    margin-left: initial; /* space between color picker and ignore checkbox */
+    margin-bottom: 1.5rem;
+  }
+  #generate-palette {
+    margin-top: 0.5rem;
+  }
+  /* ===========================
+   1) Checkbox alignment (both rows)
+   =========================== */
+  .main-color-control label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem; /* space between box and text */
+    line-height: 1.25; /* keep a stable baseline */
+  }
+  .main-color-control input[type="checkbox"] {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0; /* remove top/bottom nudge */
+  }
+
+  /* ===========================
+   2) Prevent overflow, allow wrapping inside the panel
+   =========================== */
+  #color-combination {
+    overflow: hidden; /* hide any stray outline bleed */
+    overflow-wrap: anywhere; /* break long words if needed */
+  }
+  #color-combination * {
+    min-width: 0; /* allow children to shrink inside grid/flex */
+  }
+
+  /* Harmony row: label over full-width select on all screens if space gets tight */
+  .harmony-control {
+    display: grid;
+    grid-template-columns: 1fr; /* stacks label and select */
+    gap: 0.5rem;
+    align-items: stretch;
+  }
+  #harmony-method {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Buttons: never overflow; wrap if text is long */
+  #generate-palette,
+  .combo-buttons button {
+    width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-align: center;
+  }
+
+  /* Two buttons per row on medium screens, one per row on small */
+  .combo-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  @media (max-width: 600px) {
+    .combo-buttons {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Palette label under swatches should wrap instead of overflowing */
+  .color-label {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  /* Two stacked grids: backgrounds first, then mains */
+  .gallery {
+    column-width: initial !important;
+    column-gap: 0 !important;
+    padding-top: 1rem;
+  }
+  .section-grid {
+    column-width: 100% !important; /* single column on phones/tablets */
+    column-gap: 0;
+  }
+  .mains {
+    margin-top: 0.75rem;
+  }
+  .section-grid .image-container {
+    break-inside: avoid;
+    margin-bottom: 0.75rem;
+  }
+}
+
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 1rem;
+    padding: 0.5rem 0.8rem;
+  }
+  .shuffle-btn {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+  .color-label {
+    font-size: 0.85rem;
+  }
+  .toast {
+    bottom: 1rem;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
 }

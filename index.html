@@ -29,6 +29,7 @@
           <button id="shuffle-btn" class="shuffle-btn">🔀 Shuffle</button>
         </div>
         <input id="image-search" class="search image-search" placeholder="Search Images…" />
+        <button id="nav-toggle" class="nav-toggle" aria-label="Open menu">☰</button>
       </header>
 
       <section id="color-combination" class="color-combo">
@@ -40,7 +41,7 @@
           </label>
           <input type="color" id="main-color-picker" value="#fcd303" />
 
-          <label style="margin-left: 1.5rem">
+          <label class="ignore_csv">
             <input type="checkbox" id="ignore-csv" />
             Ignore CSV & show hex codes
           </label>
@@ -90,6 +91,7 @@
       </div>
     </main>
 
+    <div id="nav-overlay" class="nav-overlay" aria-hidden="true"></div>
     <div id="toast" class="toast">Copied!</div>
   </body>
 </html>

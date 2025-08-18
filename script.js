@@ -1,5 +1,5 @@
-// script.js — Backgrounds first (separate grid), then Main images (separate grid)
-// Prompts view + Color Combination tools preserved
+// script.js — Backgrounds first (separate grid), Main images (separate grid),
+// Prompts view, Color tools, and Mobile Drawer Navigation
 
 document.addEventListener("DOMContentLoaded", async () => {
   // ------------------------
@@ -17,6 +17,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   const headerTitle = document.getElementById("current-folder");
   const shuffleBtn = document.getElementById("shuffle-btn");
   const toast = document.getElementById("toast");
+
+  // Mobile drawer controls
+  const navToggle = document.getElementById("nav-toggle");
+  const navOverlay = document.getElementById("nav-overlay");
+  const bodyEl = document.body;
 
   // Color UI
   const useMainCB = document.getElementById("use-main-color");
@@ -40,6 +45,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   await loadPrompts();
   await loadColorsCSV();
   initColorCombination();
+  initDrawerNav();
 
   // ------------------------
   // Folders sidebar
@@ -64,12 +70,38 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // ------------------------
+  // Drawer nav behavior
+  // ------------------------
+  function openNav() {
+    bodyEl.classList.add("nav-open");
+    navOverlay.setAttribute("aria-hidden", "false");
+  }
+  function closeNav() {
+    bodyEl.classList.remove("nav-open");
+    navOverlay.setAttribute("aria-hidden", "true");
+  }
+  function toggleNav() {
+    bodyEl.classList.contains("nav-open") ? closeNav() : openNav();
+  }
+
+  function initDrawerNav() {
+    if (navToggle) navToggle.addEventListener("click", toggleNav);
+    if (navOverlay) navOverlay.addEventListener("click", closeNav);
+    // Close on ESC
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeNav();
+    });
+    // Close on resize back to desktop
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 1024) closeNav();
+    });
+  }
+
+  // ------------------------
   // Gallery helpers
   // ------------------------
   function normalizeImageData(raw) {
-    // NEW shape: { main:[...], backgrounds:[...] }
-    // OLD shape: [ ... ]
-    if (Array.isArray(raw)) return { backgrounds: [], main: raw };
+    if (Array.isArray(raw)) return { backgrounds: [], main: raw }; // legacy manifest
     const bgs = Array.isArray(raw?.backgrounds) ? raw.backgrounds : [];
     const main = Array.isArray(raw?.main) ? raw.main : [];
     return { backgrounds: bgs, main };
@@ -78,7 +110,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   function buildImageCard(src) {
     const card = document.createElement("div");
     card.className = "image-container";
-
     const img = document.createElement("img");
     img.src = src;
     img.loading = "lazy";
@@ -93,11 +124,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     return card;
   }
 
-  // Ensure two stacked grids exist under #gallery (bg first, then main)
   function ensureGrids() {
     let bg = document.getElementById("bg-grid");
     let main = document.getElementById("main-grid");
-
     if (!bg || !main) {
       gallery.innerHTML = `
         <div id="bg-grid" class="section-grid backgrounds"></div>
@@ -131,12 +160,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (name === "Prompts") {
       await loadPrompts();
       initColorCombination();
+      // if small screen, close drawer after selection
+      if (window.innerWidth <= 1024) closeNav();
       return;
     }
 
     const raw = images[name];
     if (!raw) {
       gallery.innerHTML = `<div style="font-size:1.2rem;">No images found.</div>`;
+      if (window.innerWidth <= 1024) closeNav();
       return;
     }
 
@@ -144,12 +176,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     const bgSorted = [...backgrounds].sort((a, b) => a.localeCompare(b));
     const mainSorted = [...main].sort((a, b) => a.localeCompare(b));
 
-    // Save originals for shuffle/search
     gallery.dataset.bg = JSON.stringify(bgSorted);
     gallery.dataset.main = JSON.stringify(mainSorted);
 
-    // Render: backgrounds first (top), then main (bottom)
     renderTwoSections(bgSorted, mainSorted);
+
+    // Close drawer on mobile after choosing a folder
+    if (window.innerWidth <= 1024) closeNav();
   }
 
   // ------------------------
@@ -176,7 +209,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // ------------------------
   async function loadPrompts() {
     const { prompts } = await fetch("prompts.json").then((r) => r.json());
-    gallery.innerHTML = ""; // remove bg/main grids if present
+    gallery.innerHTML = "";
 
     const promptGrid = document.createElement("div");
     promptGrid.className = "section-grid";
@@ -252,7 +285,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
       const text = await fetch("colors.csv").then((r) => r.text());
       const [, ...lines] = text.trim().split("\n");
-
       colorList.length = 0;
       lines.forEach((line) => {
         const [raw, r, g, b] = line.split(",").map((c) => c.trim());
@@ -267,7 +299,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         const { h, s, l } = rgbToHsl(rr, gg, bb);
         colorList.push({ name, r: rr, g: gg, b: bb, h, s, l });
       });
-
       colorsLoadedOK = colorList.length > 0;
       if (!colorsLoadedOK) ignoreCsvCB.checked = true;
     } catch {
@@ -484,11 +515,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const raw =
       methodObj.fn.length === 1 ? methodObj.fn(baseH).slice(0, N) : methodObj.fn(baseH, N);
 
-    const hslArr = raw.map((o) => ({
-      h: o.h,
-      s: o.s ?? baseS,
-      l: o.l ?? baseL,
-    }));
+    const hslArr = raw.map((o) => ({ h: o.h, s: o.s ?? baseS, l: o.l ?? baseL }));
 
     const useHex = ignoreCsvCB.checked || !colorsLoadedOK || colorList.length === 0;
     const combo = hslArr.map(({ h, s, l }) => {
