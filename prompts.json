@@ -38,7 +38,7 @@
     },
     {
       "title": "Transparency: False",
-      "description": "png_transparency: False"
+      "description": "png_transparency: False (make sure the full canvas is drawn with colors)"
     },
     {
       "title": "Lock Aspect Ratio",
