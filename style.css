@@ -311,10 +311,28 @@ header h1 {
 }
 
 /* Gallery */
+/* ---- Two stacked grids: BACKGROUNDS first, then MAIN ---- */
 .gallery {
+  /* kill any earlier masonry on the wrapper */
+  column-width: initial !important;
+  column-gap: 0 !important;
+  padding-top: 1rem;
+}
+
+/* Each section gets the masonry columns */
+.section-grid {
   column-width: 260px;
   column-gap: var(--gap);
-  padding-top: 1rem;
+}
+
+/* space between the two sections */
+.mains {
+  margin-top: 1rem;
+}
+
+/* keep cards intact inside each grid */
+.section-grid .image-container {
+  break-inside: avoid;
 }
 
 .image-container img {
@@ -553,4 +571,27 @@ header h1 {
   color: #fff;
   flex: 1 1 auto;
   white-space: nowrap;
+}
+
+/* ---- Sectioned Gallery (Backgrounds first, then Main) ---- */
+.gallery-section {
+  margin-bottom: 1.25rem;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0.25rem 0 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background: #ffffff;
+  border-radius: 0.6rem;
+  box-shadow: var(--shadow);
+}
+
+/* Each section uses the same masonry style as .gallery */
+.section-grid {
+  column-width: 260px;
+  column-gap: var(--gap);
+  padding-top: 1rem;
 }

@@ -1,8 +1,15 @@
+// script.js — Backgrounds first (separate grid), then Main images (separate grid)
+// Prompts view + Color Combination tools preserved
+
 document.addEventListener("DOMContentLoaded", async () => {
-  // 1) Load manifest.json
+  // ------------------------
+  // Load manifest.json
+  // ------------------------
   const { folders, images } = await fetch("manifest.json").then((r) => r.json());
 
-  // 2) DOM elements
+  // ------------------------
+  // DOM references
+  // ------------------------
   const folderList = document.getElementById("folder-list");
   const gallery = document.getElementById("gallery");
   const folderSearch = document.getElementById("folder-search");
@@ -20,19 +27,26 @@ document.addEventListener("DOMContentLoaded", async () => {
   const comboBtns = document.querySelectorAll(".combo-buttons button");
   const colorDisplay = document.getElementById("color-display");
 
-  // 3) Globals
+  // ------------------------
+  // Globals
+  // ------------------------
   let currentFolder = "Prompts";
-  let originalOrder = [];
+  let colorsLoadedOK = false;
   const colorList = [];
 
-  // 4) Initial view
+  // ------------------------
+  // Init view
+  // ------------------------
   await loadPrompts();
   await loadColorsCSV();
   initColorCombination();
 
-  // 5) Folder list
+  // ------------------------
+  // Folders sidebar
+  // ------------------------
   const sortedFolders = ["Prompts", ...folders.sort((a, b) => a.localeCompare(b))];
   renderFolders(sortedFolders);
+
   folderSearch.oninput = () => {
     const term = folderSearch.value.toLowerCase();
     renderFolders(sortedFolders.filter((f) => f.toLowerCase().includes(term)));
@@ -49,6 +63,64 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
+  // ------------------------
+  // Gallery helpers
+  // ------------------------
+  function normalizeImageData(raw) {
+    // NEW shape: { main:[...], backgrounds:[...] }
+    // OLD shape: [ ... ]
+    if (Array.isArray(raw)) return { backgrounds: [], main: raw };
+    const bgs = Array.isArray(raw?.backgrounds) ? raw.backgrounds : [];
+    const main = Array.isArray(raw?.main) ? raw.main : [];
+    return { backgrounds: bgs, main };
+  }
+
+  function buildImageCard(src) {
+    const card = document.createElement("div");
+    card.className = "image-container";
+
+    const img = document.createElement("img");
+    img.src = src;
+    img.loading = "lazy";
+    card.appendChild(img);
+
+    const icon = document.createElement("div");
+    icon.className = "copy-icon";
+    icon.textContent = "📋";
+    card.appendChild(icon);
+
+    card.onclick = copyImageToClipboard;
+    return card;
+  }
+
+  // Ensure two stacked grids exist under #gallery (bg first, then main)
+  function ensureGrids() {
+    let bg = document.getElementById("bg-grid");
+    let main = document.getElementById("main-grid");
+
+    if (!bg || !main) {
+      gallery.innerHTML = `
+        <div id="bg-grid" class="section-grid backgrounds"></div>
+        <div id="main-grid" class="section-grid mains"></div>
+      `;
+      bg = document.getElementById("bg-grid");
+      main = document.getElementById("main-grid");
+    } else {
+      bg.innerHTML = "";
+      main.innerHTML = "";
+    }
+    return [bg, main];
+  }
+
+  function renderTwoSections(bgUrls, mainUrls) {
+    const [bgGrid, mainGrid] = ensureGrids();
+    bgUrls.forEach((src) => bgGrid.appendChild(buildImageCard(src)));
+    mainUrls.forEach((src) => mainGrid.appendChild(buildImageCard(src)));
+  }
+
+  // ------------------------
+  // Folder selection
+  // ------------------------
   async function selectFolder(li, name) {
     folderList.querySelectorAll("li").forEach((x) => x.classList.remove("active"));
     li.classList.add("active");
@@ -61,37 +133,98 @@ document.addEventListener("DOMContentLoaded", async () => {
       initColorCombination();
       return;
     }
-    if (!images[name]) {
+
+    const raw = images[name];
+    if (!raw) {
       gallery.innerHTML = `<div style="font-size:1.2rem;">No images found.</div>`;
       return;
     }
-    originalOrder = [...images[name]].sort((a, b) => a.localeCompare(b));
-    renderImages(originalOrder);
+
+    const { backgrounds, main } = normalizeImageData(raw);
+    const bgSorted = [...backgrounds].sort((a, b) => a.localeCompare(b));
+    const mainSorted = [...main].sort((a, b) => a.localeCompare(b));
+
+    // Save originals for shuffle/search
+    gallery.dataset.bg = JSON.stringify(bgSorted);
+    gallery.dataset.main = JSON.stringify(mainSorted);
+
+    // Render: backgrounds first (top), then main (bottom)
+    renderTwoSections(bgSorted, mainSorted);
   }
 
-  // 6) Images
-  function renderImages(urls) {
-    gallery.innerHTML = "";
-    urls.forEach((src) => {
-      const card = document.createElement("div");
-      card.className = "image-container";
-      const img = document.createElement("img");
-      img.src = src;
-      card.appendChild(img);
-      const icon = document.createElement("div");
-      icon.className = "copy-icon";
-      icon.textContent = "📋";
-      card.appendChild(icon);
-      card.onclick = copyImageToClipboard;
-      gallery.appendChild(card);
+  // ------------------------
+  // Search & Shuffle
+  // ------------------------
+  imageSearch.oninput = () => {
+    const term = imageSearch.value.toLowerCase().trim();
+    document.querySelectorAll(".image-container").forEach((div) => {
+      const fn = div.querySelector("img")?.src.split("/").pop().toLowerCase() || "";
+      div.style.display = fn.includes(term) ? "" : "none";
     });
+  };
+
+  shuffleBtn.onclick = () => {
+    if (currentFolder === "Prompts") return;
+    const bg = JSON.parse(gallery.dataset.bg || "[]");
+    const main = JSON.parse(gallery.dataset.main || "[]");
+    const shuf = (arr) => [...arr].sort(() => Math.random() - 0.5);
+    renderTwoSections(shuf(bg), shuf(main));
+  };
+
+  // ------------------------
+  // Prompts view
+  // ------------------------
+  async function loadPrompts() {
+    const { prompts } = await fetch("prompts.json").then((r) => r.json());
+    gallery.innerHTML = ""; // remove bg/main grids if present
+
+    const promptGrid = document.createElement("div");
+    promptGrid.className = "section-grid";
+
+    prompts.forEach((p) => {
+      const c = document.createElement("div");
+      c.className = "image-container";
+
+      const t = document.createElement("div");
+      t.textContent = p.title;
+      Object.assign(t.style, {
+        padding: "1rem",
+        fontWeight: "bold",
+        textAlign: "center",
+        background: "var(--accent)",
+        color: "#fff",
+      });
+      c.appendChild(t);
+
+      const ic = document.createElement("div");
+      ic.className = "copy-icon";
+      ic.textContent = "📋";
+      c.appendChild(ic);
+
+      c.onclick = async () => {
+        try {
+          await navigator.clipboard.writeText(p.description);
+          showToast();
+        } catch {
+          alert("❌ Copy failed.");
+        }
+      };
+
+      promptGrid.appendChild(c);
+    });
+
+    gallery.appendChild(promptGrid);
   }
 
+  // ------------------------
+  // Copy image
+  // ------------------------
   function copyImageToClipboard() {
     const src = this.querySelector("img").src;
     const imgEl = new Image();
     imgEl.crossOrigin = "anonymous";
     imgEl.src = src;
+
     imgEl.onload = () => {
       const canvas = document.createElement("canvas");
       canvas.width = imgEl.naturalWidth;
@@ -108,80 +241,44 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
       }, "image/png");
     };
+
     imgEl.onerror = () => alert("❌ Image load error.");
   }
 
-  imageSearch.oninput = () => {
-    const term = imageSearch.value.toLowerCase();
-    document.querySelectorAll(".image-container").forEach((div) => {
-      const fn = div.querySelector("img")?.src.split("/").pop().toLowerCase() || "";
-      div.style.display = fn.includes(term) ? "" : "none";
-    });
-  };
-
-  shuffleBtn.onclick = () => {
-    if (currentFolder === "Prompts" || !images[currentFolder]) return;
-    renderImages([...originalOrder].sort(() => Math.random() - 0.5));
-  };
-
-  // 7) Prompts panel
-  async function loadPrompts() {
-    const { prompts } = await fetch("prompts.json").then((r) => r.json());
-    gallery.innerHTML = "";
-    headerTitle.textContent = "Prompts";
-    prompts.forEach((p) => {
-      const c = document.createElement("div");
-      c.className = "image-container";
-      const t = document.createElement("div");
-      t.textContent = p.title;
-      Object.assign(t.style, {
-        padding: "1rem",
-        fontWeight: "bold",
-        textAlign: "center",
-        background: "var(--accent)",
-        color: "#fff",
-      });
-      c.appendChild(t);
-      const ic = document.createElement("div");
-      ic.className = "copy-icon";
-      ic.textContent = "📋";
-      c.appendChild(ic);
-      c.onclick = async () => {
-        try {
-          await navigator.clipboard.writeText(p.description);
-          showToast();
-        } catch {
-          alert("❌ Copy failed.");
-        }
-      };
-      gallery.appendChild(c);
-    });
-  }
-
-  // 8) Load colors.csv
+  // ------------------------
+  // Colors / CSV
+  // ------------------------
   async function loadColorsCSV() {
     try {
       const text = await fetch("colors.csv").then((r) => r.text());
       const [, ...lines] = text.trim().split("\n");
+
       colorList.length = 0;
       lines.forEach((line) => {
         const [raw, r, g, b] = line.split(",").map((c) => c.trim());
         const name = raw
           .split(" ")
-          .map((w) => w[0].toUpperCase() + w.slice(1).toLowerCase())
+          .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
           .join(" ");
-        const rr = +r,
-          gg = +g,
-          bb = +b;
+        const rr = Number(r),
+          gg = Number(g),
+          bb = Number(b);
+        if (Number.isNaN(rr) || Number.isNaN(gg) || Number.isNaN(bb)) return;
         const { h, s, l } = rgbToHsl(rr, gg, bb);
         colorList.push({ name, r: rr, g: gg, b: bb, h, s, l });
       });
+
+      colorsLoadedOK = colorList.length > 0;
+      if (!colorsLoadedOK) ignoreCsvCB.checked = true;
     } catch {
-      console.error("❌ Failed to load colors.csv");
+      colorsLoadedOK = false;
+      ignoreCsvCB.checked = true;
     }
   }
 
-  // 9) Color math
+  // ------------------------
+  // Color math & palette
+  // ------------------------
   function rgbToHsl(r, g, b) {
     r /= 255;
     g /= 255;
@@ -209,6 +306,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
     return { h: h * 360, s: s * 100, l: l * 100 };
   }
+
   function hslToRgb(h, s, l) {
     s /= 100;
     l /= 100;
@@ -243,27 +341,38 @@ document.addEventListener("DOMContentLoaded", async () => {
       b: Math.round((b1 + m) * 255),
     };
   }
+
   function rgbToHex(r, g, b) {
     return "#" + [r, g, b].map((v) => v.toString(16).padStart(2, "0")).join("");
   }
-  function findNearestByHue(hue) {
-    return colorList.reduce((best, c) => {
-      const bd = Math.min(Math.abs(best.h - hue), 360 - Math.abs(best.h - hue));
-      const cd = Math.min(Math.abs(c.h - hue), 360 - Math.abs(c.h - hue));
-      return cd < bd ? c : best;
-    });
+
+  function circularHueDist(a, b) {
+    const d = Math.abs(a - b);
+    return Math.min(d, 360 - d);
   }
 
-  // 10) Helpers for natural modes
+  function findNearestByHue(hue) {
+    if (!colorsLoadedOK || colorList.length === 0) {
+      const { r, g, b } = hslToRgb(hue, 70, 50);
+      const hex = rgbToHex(r, g, b);
+      return { name: hex, r, g, b, h: hue, s: 70, l: 50 };
+    }
+    return colorList.reduce((best, c) => {
+      const bd = circularHueDist(best.h, hue);
+      const cd = circularHueDist(c.h, hue);
+      return cd < bd ? c : best;
+    }, colorList[0]);
+  }
+
   function evenlySpacedHues(baseH, n) {
     return Array.from({ length: n }, (_, i) => (baseH + (360 / n) * i) % 360);
   }
   function warmMode(n) {
-    const base = Math.random() * 90; // 0–90°
+    const base = Math.random() * 90;
     return evenlySpacedHues(base, n).map((h) => ({ h, s: 80, l: 50 }));
   }
   function coolMode(n) {
-    const base = 180 + Math.random() * 120; //180–300°
+    const base = 180 + Math.random() * 120;
     return evenlySpacedHues(base, n).map((h) => ({ h, s: 60, l: 50 }));
   }
   function darkMode(n) {
@@ -287,16 +396,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     return evenlySpacedHues(base, n).map((h) => ({ h, s: 90, l: 50 }));
   }
   function neutralMode(n) {
-    // greys: ignore hue
     return Array.from({ length: n }, (_, i) => ({ h: 0, s: 0, l: ((i + 1) / (n + 1)) * 100 }));
   }
   function earthyMode(n) {
-    const starts = [30, 60, 90]; // brownish-yellow
+    const starts = [30, 60, 90];
     const base = starts[Math.floor(Math.random() * starts.length)];
     return evenlySpacedHues(base, n).map((h) => ({ h, s: 50, l: 40 }));
   }
 
-  // 11) methodMap
   const methodMap = {
     complementary: {
       name: "Complementary",
@@ -333,6 +440,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       name: "Double Split",
       fn: (h) => evenlySpacedHues(h, 5).map((x) => ({ h: x })),
     },
+
+    // Natural families
     warm: { name: "Warm", fn: (_, n) => warmMode(n) },
     cool: { name: "Cool", fn: (_, n) => coolMode(n) },
     dark: { name: "Dark", fn: (_, n) => darkMode(n) },
@@ -344,9 +453,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     earthy: { name: "Earthy", fn: (_, n) => earthyMode(n) },
   };
 
-  // 12) generatePalette + init
   async function generatePalette({ countOverride = null } = {}) {
     const N = countOverride || Math.floor(Math.random() * 5) + 2;
+
     let baseH,
       baseS = 70,
       baseL = 50;
@@ -364,34 +473,32 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else {
       baseH = Math.random() * 360;
     }
-    // pick method
+
     let key = harmonySelect.value;
     if (!key || !methodMap[key]) {
       const keys = Object.keys(methodMap);
       key = keys[Math.floor(Math.random() * keys.length)];
     }
     const methodObj = methodMap[key];
-    // get raw HSL arr
+
     const raw =
-      methodObj.fn.length === 1
-        ? methodObj.fn(baseH).slice(0, N) // legacy fn(h)
-        : methodObj.fn(baseH, N); // new fn(h,n)
+      methodObj.fn.length === 1 ? methodObj.fn(baseH).slice(0, N) : methodObj.fn(baseH, N);
+
     const hslArr = raw.map((o) => ({
       h: o.h,
-      s: o.s != null ? o.s : baseS,
-      l: o.l != null ? o.l : baseL,
+      s: o.s ?? baseS,
+      l: o.l ?? baseL,
     }));
 
-    // build final combos
+    const useHex = ignoreCsvCB.checked || !colorsLoadedOK || colorList.length === 0;
     const combo = hslArr.map(({ h, s, l }) => {
-      if (ignoreCsvCB.checked) {
+      if (useHex) {
         const { r, g, b } = hslToRgb(h, s, l);
-        return { name: rgbToHex(r, g, b), r, g, b };
+        return { name: rgbToHex(r, g, b), r, g, b, h, s, l };
       }
       return findNearestByHue(h);
     });
 
-    // render
     colorDisplay.innerHTML = "";
     combo.forEach((c) => {
       const sw = document.createElement("div");
@@ -400,11 +507,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       sw.title = c.name;
       colorDisplay.appendChild(sw);
     });
+
     const names = combo.map((c) => c.name);
-    let text =
+    const text =
       N === 2
         ? `(${names[0]} and ${names[1]})`
         : `(${names.slice(0, -1).join(", ")}, and ${names.slice(-1)})`;
+
     const label = document.createElement("span");
     label.className = "color-label";
     label.textContent = `${methodObj.name}: ${text}`;
@@ -425,6 +534,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
+  // ------------------------
+  // Toast
+  // ------------------------
   function showToast() {
     toast.classList.add("show");
     setTimeout(() => toast.classList.remove("show"), 1000);
