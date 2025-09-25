@@ -122,6 +122,7 @@
         "Sample List/Abstract Style/Background/27 - Background.jpg",
         "Sample List/Abstract Style/Background/28 - Background.jpg",
         "Sample List/Abstract Style/Background/29 - Background.jpg",
+        "Sample List/Abstract Style/Background/30 - Background.jpg",
         "Sample List/Abstract Style/Background/31 - Background.jpg",
         "Sample List/Abstract Style/Background/32 - Background.jpg",
         "Sample List/Abstract Style/Background/33 - Background.jpg",
@@ -152,7 +153,6 @@
         "Sample List/Abstract Style/Background/58 - Background.jpg",
         "Sample List/Abstract Style/Background/59 - Background.jpg",
         "Sample List/Abstract Style/Background/60 - Background.jpg",
-        "Sample List/Abstract Style/Background/60.png",
         "Sample List/Abstract Style/Background/61 - Background.jpg",
         "Sample List/Abstract Style/Background/62 - Background.jpg",
         "Sample List/Abstract Style/Background/63 - Background.jpg",
@@ -535,7 +535,8 @@
         "Sample List/Pop Art Style/26 - Pop Art Style.jpg",
         "Sample List/Pop Art Style/27 - Pop Art Style.jpg",
         "Sample List/Pop Art Style/28 - Pop Art Style.jpg",
-        "Sample List/Pop Art Style/29 - Pop Art Style.jpg"
+        "Sample List/Pop Art Style/29 - Pop Art Style.jpg",
+        "Sample List/Pop Art Style/30 - Pop Art Style.jpg"
       ],
       "backgrounds": [
         "Sample List/Pop Art Style/Background/1 - Background.jpg",
