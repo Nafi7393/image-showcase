@@ -164,7 +164,14 @@
         "Sample List/Abstract Style/Background/69 - Background.jpg",
         "Sample List/Abstract Style/Background/70 - Background.jpg",
         "Sample List/Abstract Style/Background/71 - Background.jpg",
-        "Sample List/Abstract Style/Background/72 - Background.jpg"
+        "Sample List/Abstract Style/Background/72 - Background.jpg",
+        "Sample List/Abstract Style/Background/73 - Background.jpg",
+        "Sample List/Abstract Style/Background/74 - Background.jpg",
+        "Sample List/Abstract Style/Background/75 - Background.jpg",
+        "Sample List/Abstract Style/Background/76 - Background.jpg",
+        "Sample List/Abstract Style/Background/77 - Background.jpg",
+        "Sample List/Abstract Style/Background/78 - Background.jpg",
+        "Sample List/Abstract Style/Background/79 - Background.jpg"
       ]
     },
     "Black & White Style": {
@@ -217,7 +224,12 @@
         "Sample List/Black & White Style/Background/20 - Background.jpg",
         "Sample List/Black & White Style/Background/21 - Background.jpg",
         "Sample List/Black & White Style/Background/22 - Background.jpg",
-        "Sample List/Black & White Style/Background/23 - Background.jpg"
+        "Sample List/Black & White Style/Background/23 - Background.jpg",
+        "Sample List/Black & White Style/Background/24 - Background.jpg",
+        "Sample List/Black & White Style/Background/25 - Background.jpg",
+        "Sample List/Black & White Style/Background/26 - Background.jpg",
+        "Sample List/Black & White Style/Background/27 - Background.jpg",
+        "Sample List/Black & White Style/Background/28 - Background.jpg"
       ]
     },
     "Cartoon Style": {
@@ -241,7 +253,12 @@
         "Sample List/Cartoon Style/17 - Cartoon Style.jpg",
         "Sample List/Cartoon Style/18 - Cartoon Style.jpg"
       ],
-      "backgrounds": []
+      "backgrounds": [
+        "Sample List/Cartoon Style/Background/1 - Background.jpg",
+        "Sample List/Cartoon Style/Background/2 - Background.jpg",
+        "Sample List/Cartoon Style/Background/3 - Background.jpg",
+        "Sample List/Cartoon Style/Background/4.jpg"
+      ]
     },
     "Contemporary Style": {
       "main": [
@@ -283,7 +300,9 @@
         "Sample List/Contemporary Style/Background/10 - Background.jpg",
         "Sample List/Contemporary Style/Background/11 - Background.jpg",
         "Sample List/Contemporary Style/Background/12 - Background.jpg",
-        "Sample List/Contemporary Style/Background/13 - Background.jpg"
+        "Sample List/Contemporary Style/Background/13 - Background.jpg",
+        "Sample List/Contemporary Style/Background/14 - Background.jpg",
+        "Sample List/Contemporary Style/Background/15 - Background.jpg"
       ]
     },
     "Cubism Style": {
@@ -311,7 +330,14 @@
         "Sample List/Cubism Style/Background/12 - Background.jpg",
         "Sample List/Cubism Style/Background/13 - Background.jpg",
         "Sample List/Cubism Style/Background/14 - Background.jpg",
-        "Sample List/Cubism Style/Background/15 - Background.jpg"
+        "Sample List/Cubism Style/Background/15 - Background.jpg",
+        "Sample List/Cubism Style/Background/16 - Background.jpg",
+        "Sample List/Cubism Style/Background/17 - Background.jpg",
+        "Sample List/Cubism Style/Background/18 - Background.jpg",
+        "Sample List/Cubism Style/Background/19 - Background.jpg",
+        "Sample List/Cubism Style/Background/20 - Background.jpg",
+        "Sample List/Cubism Style/Background/21 - Background.jpg",
+        "Sample List/Cubism Style/Background/22 - Background.jpg"
       ]
     },
     "Expressionism Style": {
@@ -339,7 +365,13 @@
         "Sample List/Expressionism Style/21 - Expressionism Style.jpg",
         "Sample List/Expressionism Style/22 - Expressionism Style.jpg"
       ],
-      "backgrounds": []
+      "backgrounds": [
+        "Sample List/Expressionism Style/Background/1.jpg",
+        "Sample List/Expressionism Style/Background/2.jpg",
+        "Sample List/Expressionism Style/Background/3.jpg",
+        "Sample List/Expressionism Style/Background/4 - Background.jpg",
+        "Sample List/Expressionism Style/Background/5 - Background.jpg"
+      ]
     },
     "Fauvism Style": {
       "main": [
@@ -363,7 +395,18 @@
         "Sample List/Fauvism Style/18 - Fauvism Style.jpg",
         "Sample List/Fauvism Style/19 - Fauvism Style.jpg"
       ],
-      "backgrounds": []
+      "backgrounds": [
+        "Sample List/Fauvism Style/Background/1.jpg",
+        "Sample List/Fauvism Style/Background/2.jpg",
+        "Sample List/Fauvism Style/Background/3.jpg",
+        "Sample List/Fauvism Style/Background/4.jpg",
+        "Sample List/Fauvism Style/Background/5.jpg",
+        "Sample List/Fauvism Style/Background/6.jpg",
+        "Sample List/Fauvism Style/Background/7.jpg",
+        "Sample List/Fauvism Style/Background/8.jpg",
+        "Sample List/Fauvism Style/Background/9.jpg",
+        "Sample List/Fauvism Style/Background/10.jpg"
+      ]
     },
     "Geometric Style": {
       "main": [
@@ -402,7 +445,18 @@
         "Sample List/Geometric Style/Background/4 - Background.jpg",
         "Sample List/Geometric Style/Background/5 - Background.jpg",
         "Sample List/Geometric Style/Background/6 - Background.jpg",
-        "Sample List/Geometric Style/Background/7 - Background.jpg"
+        "Sample List/Geometric Style/Background/7 - Background.jpg",
+        "Sample List/Geometric Style/Background/8 - Background.jpg",
+        "Sample List/Geometric Style/Background/9 - Background.jpg",
+        "Sample List/Geometric Style/Background/10 - Background.jpg",
+        "Sample List/Geometric Style/Background/11 - Background.jpg",
+        "Sample List/Geometric Style/Background/12 - Background.jpg",
+        "Sample List/Geometric Style/Background/13 - Background.jpg",
+        "Sample List/Geometric Style/Background/14 - Background.jpg",
+        "Sample List/Geometric Style/Background/15 - Background.jpg",
+        "Sample List/Geometric Style/Background/16 - Background.jpg",
+        "Sample List/Geometric Style/Background/17 - Background.jpg",
+        "Sample List/Geometric Style/Background/18.jpg"
       ]
     },
     "Graffiti Cartoon Style": {
@@ -417,7 +471,24 @@
         "Sample List/Graffiti Cartoon Style/8 - Graffiti Cartoon Style.jpg",
         "Sample List/Graffiti Cartoon Style/9 - Graffiti Cartoon Style.jpg"
       ],
-      "backgrounds": []
+      "backgrounds": [
+        "Sample List/Graffiti Cartoon Style/Background/1 - Background.jpg",
+        "Sample List/Graffiti Cartoon Style/Background/2 - Background.jpg",
+        "Sample List/Graffiti Cartoon Style/Background/3 - Background.jpg",
+        "Sample List/Graffiti Cartoon Style/Background/4 - Background.jpg",
+        "Sample List/Graffiti Cartoon Style/Background/5 - Background.jpg",
+        "Sample List/Graffiti Cartoon Style/Background/6 - Background.jpg",
+        "Sample List/Graffiti Cartoon Style/Background/7 - Background.jpg",
+        "Sample List/Graffiti Cartoon Style/Background/8 - Background.jpg",
+        "Sample List/Graffiti Cartoon Style/Background/9 - Background.jpg",
+        "Sample List/Graffiti Cartoon Style/Background/10 - Background.jpg",
+        "Sample List/Graffiti Cartoon Style/Background/11 - Background.jpg",
+        "Sample List/Graffiti Cartoon Style/Background/12 - Background.jpg",
+        "Sample List/Graffiti Cartoon Style/Background/13 - Background.jpg",
+        "Sample List/Graffiti Cartoon Style/Background/14 - Background.jpg",
+        "Sample List/Graffiti Cartoon Style/Background/15 - Background.jpg",
+        "Sample List/Graffiti Cartoon Style/Background/16 - Background.jpg"
+      ]
     },
     "Line Art Style": {
       "main": [
@@ -446,7 +517,18 @@
         "Sample List/Matisse Style/8 - Matisse Style.jpg",
         "Sample List/Matisse Style/9 - Matisse Style.jpg"
       ],
-      "backgrounds": []
+      "backgrounds": [
+        "Sample List/Matisse Style/Background/1 - Background.jpg",
+        "Sample List/Matisse Style/Background/2.jpg",
+        "Sample List/Matisse Style/Background/3.jpg",
+        "Sample List/Matisse Style/Background/4 - Background.jpg",
+        "Sample List/Matisse Style/Background/5 - Background.jpg",
+        "Sample List/Matisse Style/Background/6 - Background.jpg",
+        "Sample List/Matisse Style/Background/7 - Background.jpg",
+        "Sample List/Matisse Style/Background/8.jpg",
+        "Sample List/Matisse Style/Background/9.jpg",
+        "Sample List/Matisse Style/Background/10.jpg"
+      ]
     },
     "Modern Style": {
       "main": [
@@ -505,7 +587,16 @@
         "Sample List/Modern Style/Background/25 - Background.jpg",
         "Sample List/Modern Style/Background/26 - Background.jpg",
         "Sample List/Modern Style/Background/27 - Background.jpg",
-        "Sample List/Modern Style/Background/28 - Background.jpg"
+        "Sample List/Modern Style/Background/28 - Background.jpg",
+        "Sample List/Modern Style/Background/29 - Background.jpg",
+        "Sample List/Modern Style/Background/30 - Background.jpg",
+        "Sample List/Modern Style/Background/31 - Background.jpg",
+        "Sample List/Modern Style/Background/32 - Background.jpg",
+        "Sample List/Modern Style/Background/33 - Background.jpg",
+        "Sample List/Modern Style/Background/34 - Background.jpg",
+        "Sample List/Modern Style/Background/35 - Background.jpg",
+        "Sample List/Modern Style/Background/36 - Background.jpg",
+        "Sample List/Modern Style/Background/37 - Background.jpg"
       ]
     },
     "Pop Art Style": {
@@ -539,7 +630,13 @@
         "Sample List/Pop Art Style/27 - Pop Art Style.jpg",
         "Sample List/Pop Art Style/28 - Pop Art Style.jpg",
         "Sample List/Pop Art Style/29 - Pop Art Style.jpg",
-        "Sample List/Pop Art Style/30 - Pop Art Style.jpg"
+        "Sample List/Pop Art Style/30 - Pop Art Style.jpg",
+        "Sample List/Pop Art Style/31 - Pop Art Style.jpg",
+        "Sample List/Pop Art Style/32 - Pop Art Style.jpg",
+        "Sample List/Pop Art Style/33 - Pop Art Style.jpg",
+        "Sample List/Pop Art Style/34 - Pop Art Style.jpg",
+        "Sample List/Pop Art Style/35 - Pop Art Style.jpg",
+        "Sample List/Pop Art Style/36 - Pop Art Style.jpg"
       ],
       "backgrounds": [
         "Sample List/Pop Art Style/Background/1 - Background.jpg",
@@ -557,7 +654,17 @@
         "Sample List/Pop Art Style/Background/13 - Background.jpg",
         "Sample List/Pop Art Style/Background/14 - Background.jpg",
         "Sample List/Pop Art Style/Background/15 - Background.jpg",
-        "Sample List/Pop Art Style/Background/16 - Background.jpg"
+        "Sample List/Pop Art Style/Background/16 - Background.jpg",
+        "Sample List/Pop Art Style/Background/17 - Background.jpg",
+        "Sample List/Pop Art Style/Background/18 - Background.jpg",
+        "Sample List/Pop Art Style/Background/19 - Background.jpg",
+        "Sample List/Pop Art Style/Background/20 - Background.jpg",
+        "Sample List/Pop Art Style/Background/21 - Background.jpg",
+        "Sample List/Pop Art Style/Background/22 - Background.jpg",
+        "Sample List/Pop Art Style/Background/23 - Background.jpg",
+        "Sample List/Pop Art Style/Background/24 - Background.jpg",
+        "Sample List/Pop Art Style/Background/25 - Background.jpg",
+        "Sample List/Pop Art Style/Background/26 - Background.jpg"
       ]
     },
     "Van Gogh Style": {
@@ -613,7 +720,27 @@
         "Sample List/Van Gogh Style/Background/9 - Background.jpg",
         "Sample List/Van Gogh Style/Background/10 - Background.jpg",
         "Sample List/Van Gogh Style/Background/11 - Background.jpg",
-        "Sample List/Van Gogh Style/Background/12 - Background.jpg"
+        "Sample List/Van Gogh Style/Background/12 - Background.jpg",
+        "Sample List/Van Gogh Style/Background/13 - Background.jpg",
+        "Sample List/Van Gogh Style/Background/14 - Background.jpg",
+        "Sample List/Van Gogh Style/Background/15 - Background.jpg",
+        "Sample List/Van Gogh Style/Background/16 - Background.jpg",
+        "Sample List/Van Gogh Style/Background/17 - Background.jpg",
+        "Sample List/Van Gogh Style/Background/18 - Background.jpg",
+        "Sample List/Van Gogh Style/Background/19 - Background.jpg",
+        "Sample List/Van Gogh Style/Background/20 - Background.jpg",
+        "Sample List/Van Gogh Style/Background/21 - Background.jpg",
+        "Sample List/Van Gogh Style/Background/22 - Background.jpg",
+        "Sample List/Van Gogh Style/Background/23 - Background.jpg",
+        "Sample List/Van Gogh Style/Background/24 - Background.jpg",
+        "Sample List/Van Gogh Style/Background/25 - Background.jpg",
+        "Sample List/Van Gogh Style/Background/26 - Background.jpg",
+        "Sample List/Van Gogh Style/Background/27 - Background.jpg",
+        "Sample List/Van Gogh Style/Background/28 - Background.jpg",
+        "Sample List/Van Gogh Style/Background/29 - Background.jpg",
+        "Sample List/Van Gogh Style/Background/30 - Background.jpg",
+        "Sample List/Van Gogh Style/Background/31 - Background.jpg",
+        "Sample List/Van Gogh Style/Background/32 - Background.jpg"
       ]
     },
     "Watercolor Style": {
@@ -657,7 +784,7 @@
         "Sample List/Watercolor Style/Background/11 - Background.jpg",
         "Sample List/Watercolor Style/Background/12 - Background.jpg",
         "Sample List/Watercolor Style/Background/13 - Background.jpg",
-        "Sample List/Watercolor Style/Background/14 - Background.jpg",
+        "Sample List/Watercolor Style/Background/14- Background.jpg",
         "Sample List/Watercolor Style/Background/15 - Background.jpg",
         "Sample List/Watercolor Style/Background/16 - Background.jpg",
         "Sample List/Watercolor Style/Background/17 - Background.jpg",
@@ -675,7 +802,25 @@
         "Sample List/Watercolor Style/Background/29 - Background.jpg",
         "Sample List/Watercolor Style/Background/30 - Background.jpg",
         "Sample List/Watercolor Style/Background/31 - Background.jpg",
-        "Sample List/Watercolor Style/Background/32 - Background.jpg"
+        "Sample List/Watercolor Style/Background/32 - Background.jpg",
+        "Sample List/Watercolor Style/Background/33 - Background.jpg",
+        "Sample List/Watercolor Style/Background/34 - Background.jpg",
+        "Sample List/Watercolor Style/Background/35 - Background.jpg",
+        "Sample List/Watercolor Style/Background/36 - Background.jpg",
+        "Sample List/Watercolor Style/Background/37 - Background.jpg",
+        "Sample List/Watercolor Style/Background/38 - Background.jpg",
+        "Sample List/Watercolor Style/Background/39 - Background.jpg",
+        "Sample List/Watercolor Style/Background/40 - Background.jpg",
+        "Sample List/Watercolor Style/Background/41 - Background.jpg",
+        "Sample List/Watercolor Style/Background/42 - Background.jpg",
+        "Sample List/Watercolor Style/Background/43 - Background.jpg",
+        "Sample List/Watercolor Style/Background/44 - Background.jpg",
+        "Sample List/Watercolor Style/Background/45 - Background.jpg",
+        "Sample List/Watercolor Style/Background/46 - Background.jpg",
+        "Sample List/Watercolor Style/Background/47 - Background.jpg",
+        "Sample List/Watercolor Style/Background/48 - Background.jpg",
+        "Sample List/Watercolor Style/Background/49 - Background.jpg",
+        "Sample List/Watercolor Style/Background/50 - Background.jpg"
       ]
     }
   }
