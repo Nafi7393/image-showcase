@@ -47,6 +47,10 @@
     {
       "title": "MY PROMPT",
       "description": "Please teach me like I'm a beginner or a child. Give your explanation mostly in English, but use Bangla (বাংলা) to help me understand clearly. Mix both languages naturally so I can learn English terms while truly understanding the concepts in Bangla."
+    },
+    {
+      "title": "Gemini - Nano Banana",
+      "description": "Turn this photo into a abstract artwork, thick and depth brush strokes. make sure that the subject looks accurate in the artwork"
     }
   ]
 }
