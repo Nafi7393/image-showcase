@@ -46,7 +46,7 @@
     },
     {
       "title": "MY PROMPT",
-      "description": "Please teach me like I'm a beginner or a child. Give your explanation mostly in English, but use Bangla (বাংলা) to help me understand clearly. Mix both languages naturally so I can learn English terms while truly understanding the concepts in Bangla."
+      "description": "You will be my teacher now. You are a super expert in the subject and topic \"SUBJECT NAME GOES HERE\". There are some topics under this subject that I really need help with. And I was hoping you could teach in a very clear and easy-to-understand way.\n\nTopic Section A:\n1. Topic 1\n2. Topic 2\n3. Topic 3\n4. Topic 4\n\nTopic Section B:\n1. Topic 1\n2. Topic 2\n3. Topic 3\n4. Topic 4\n\nInitially, give me an overview of every topic and teach me the basics, and tell me everything that gives me enough information in each topic that I can use it to pass my exam.\n\nA VERY IMPORTANT NOTE: Give your explanation mostly in simple English, but use Bangla (বাংলা) to help me understand clearly. Mix both languages naturally so I can learn English terms while truly understanding the concepts in Bangla. And please teach me like I'm a beginner or a child."
     },
     {
       "title": "Gemini - Nano Banana",
